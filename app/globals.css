@@ -1,0 +1,125 @@
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#1a1210;--gold:#e8c987;--cream:#f6ecd9;--ink:#3b2a1e}
+html,body{height:100%;-webkit-text-size-adjust:100%;overflow-x:hidden;-webkit-tap-highlight-color:transparent;background:var(--bg);color:var(--cream);font-family:Georgia,'Times New Roman',serif}
+.stage{min-height:100vh;min-height:100dvh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:max(20px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(20px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+.glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,#4a2e1d 0%,transparent 65%)}
+.stars b{position:absolute;border-radius:50%;background:var(--gold);opacity:.2;animation:tw 4s ease-in-out infinite}
+@keyframes tw{50%{opacity:.8}}
+.center{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;width:100%;max-width:560px}
+.fade{animation:fade .9s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.eyebrow{letter-spacing:.3em;text-transform:uppercase;font-size:.8rem;color:var(--gold)}
+h1{font-size:clamp(2.4rem,9vw,4.2rem);font-weight:400;line-height:1.1;color:var(--gold)}
+.idade{font-style:italic;font-size:.6em;color:var(--cream)}
+.sub{opacity:.8;font-style:italic;line-height:1.5}
+.btn{background:var(--gold);color:var(--ink);border:0;border-radius:999px;padding:14px 38px;font:inherit;font-size:1.05rem;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 6px 24px #e8c98733}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px #e8c98755}
+.btn.small{padding:10px 24px}
+.ghost{background:transparent;border:1px solid #e8c98777;color:var(--gold);border-radius:999px;width:48px;height:48px;font-size:1.1rem;cursor:pointer}
+.ghost:disabled{opacity:.25;cursor:default}
+.polaroid{background:var(--cream);padding:14px 14px 42px;border-radius:4px;box-shadow:0 20px 50px #000a;transform:rotate(var(--rot));width:min(86vw,400px,calc((100dvh - 190px) * .8));min-width:200px;animation:drop .8s cubic-bezier(.2,.9,.3,1.2) both}
+@keyframes drop{from{opacity:0;transform:translateY(-30px) rotate(calc(var(--rot) * 3))}to{opacity:1;transform:rotate(var(--rot))}}
+.polaroid img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#ddd}
+.polaroid figcaption{color:var(--ink);font-style:italic;font-size:1.15rem;padding-top:14px}
+.nav{display:flex;align-items:center;gap:18px}
+.dots{display:flex;gap:7px}.dots i{width:7px;height:7px;border-radius:50%;background:#e8c98744}.dots i.on{background:var(--gold)}
+.envelope{position:relative;width:min(80vw,300px);height:200px;background:none;border:0;cursor:pointer;animation:float 3s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.envelope .body{position:absolute;inset:0;background:#d9bf93;border-radius:6px;box-shadow:0 18px 40px #000a}
+.envelope .flap{position:absolute;left:0;right:0;top:0;height:60%;background:#c8aa78;clip-path:polygon(0 0,100% 0,50% 100%);z-index:2;border-radius:6px 6px 0 0}
+.envelope .seal{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);z-index:3;width:46px;height:46px;border-radius:50%;background:#a52a2a;color:#ffd9d9;display:grid;place-items:center;font-size:1.3rem;box-shadow:0 3px 8px #0006}
+.carta{background:var(--cream);color:var(--ink);padding:36px 30px;border-radius:6px;box-shadow:0 24px 60px #000b;text-align:left;line-height:1.75;font-size:1.08rem;max-height:calc(100dvh - 40px);overflow-y:auto;-webkit-overflow-scrolling:touch;animation:unfold .9s ease both;background-image:repeating-linear-gradient(transparent,transparent 31px,#0000000a 32px)}
+@keyframes unfold{from{opacity:0;transform:scale(.85) translateY(40px)}to{opacity:1;transform:none}}
+.carta p{margin-bottom:16px;opacity:0;animation:fade .9s ease forwards}
+.carta .assin{margin-top:26px;font-style:italic;text-align:right}
+.carta strong{font-size:1.3rem;font-style:normal}
+
+/* ---- Fundo animado: aviões, nuvens, relógios ---- */
+.fundo{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.aviao{position:absolute;left:100%;animation:voar linear infinite;will-change:transform}
+.aviao-svg{display:block;width:100%;height:auto}
+.aviao.a1{top:10%;width:260px;animation-duration:34s;animation-delay:-8s;opacity:.55}
+.aviao.a2{top:42%;width:150px;animation-duration:58s;animation-delay:-30s;opacity:.28}
+.aviao.a3{top:72%;width:340px;animation-duration:46s;animation-delay:-2s;opacity:.4}
+@keyframes voar{from{transform:translateX(0)}to{transform:translateX(calc(-100vw - 420px))}}
+.bob{animation:bob 4.5s ease-in-out infinite}
+.aviao.a2 .bob{animation-duration:6s}
+.aviao.a3 .bob{animation-duration:5.2s;animation-delay:-2s}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(1.2deg)}50%{transform:translateY(-14px) rotate(-1.2deg)}}
+.helice{transform-origin:66px 121px;animation:helice .12s linear infinite}
+@keyframes helice{0%{transform:scaleY(1)}50%{transform:scaleY(.25)}100%{transform:scaleY(1)}}
+
+.nuvem{position:absolute;left:100%;opacity:.07;animation:voar linear infinite}
+.nuvem-svg{display:block;width:100%;height:auto}
+.nuvem.n1{top:22%;width:180px;animation-duration:110s;animation-delay:-40s}
+.nuvem.n2{top:58%;width:240px;animation-duration:150s;animation-delay:-90s}
+.nuvem.n3{top:84%;width:150px;animation-duration:90s;animation-delay:-10s}
+
+.engr{position:absolute;color:var(--gold)}
+.engr-svg{display:block;width:100%;height:auto}
+@keyframes flutua{50%{transform:translateY(-12px)}}
+.mao{transform-origin:50px 50px;animation:gira linear infinite}
+.mao.s{animation-duration:60s}
+.mao.m{animation-duration:3600s}
+.mao.h{animation-duration:43200s}
+@keyframes gira{from{transform:rotate(var(--a0))}to{transform:rotate(calc(var(--a0) + 360deg))}}
+.engr{opacity:.12;animation:roda 40s linear infinite}
+.engr.g1{top:30%;left:-30px;width:clamp(90px,14vw,170px)}
+.engr.g2{bottom:20%;right:6%;width:clamp(50px,7vw,90px);animation-duration:26s;animation-direction:reverse}
+.engr.g3{top:8%;left:22%;width:clamp(40px,5vw,64px);animation-duration:20s;opacity:.09}
+@keyframes roda{to{transform:rotate(360deg)}}
+
+@media (prefers-reduced-motion:reduce){
+  .aviao,.nuvem{animation-duration:200s}
+  .bob,.helice,.engr,.spin,.rotor,.balanc{animation:none}
+}
+
+/* relógios 2D: cruzam a tela como os aviões */
+.rl{position:absolute;left:100%;animation:voar linear infinite;will-change:transform}
+.rl-svg{display:block;width:100%;height:auto;filter:drop-shadow(0 8px 14px #0009)}
+.rl .mao{transform-origin:100px 130px}
+.rl1{top:6%;width:clamp(80px,11vw,150px);opacity:.8;animation-duration:44s;animation-delay:-12s}
+.rl2{top:52%;width:clamp(90px,13vw,170px);opacity:.8;animation-duration:60s;animation-delay:-38s}
+.rl3{top:28%;width:clamp(70px,9vw,120px);opacity:.7;animation-duration:36s;animation-delay:-22s}
+.rl2 .bob{animation-duration:6.5s}
+.rl3 .bob{animation-duration:4.2s}
+.spin,.rotor,.balanc{transform-box:fill-box;transform-origin:center;animation:roda 10s linear infinite}
+.rotor{transform-box:view-box;transform-origin:100px 130px;animation-duration:14s}
+.balanc{animation:osc .7s ease-in-out infinite alternate}
+@keyframes osc{from{transform:rotate(-140deg)}to{transform:rotate(140deg)}}
+@media (prefers-reduced-motion:reduce){.rl{animation-duration:200s}}
+
+/* botão de música: sempre visível, grande o bastante pro dedo */
+.musica{position:fixed;top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));z-index:20;display:flex;align-items:center;gap:8px;min-height:48px;padding:0 18px 0 14px;background:#1a1210cc;color:var(--gold);border:1.5px solid var(--gold);border-radius:999px;font:inherit;font-size:.95rem;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 4px 18px #000a;touch-action:manipulation}
+.musica:not(.on){animation:pulso 1.8s ease-out infinite}
+.musica.on{background:var(--gold);color:var(--ink)}
+@keyframes pulso{0%{box-shadow:0 4px 18px #000a,0 0 0 0 #e8c987aa}100%{box-shadow:0 4px 18px #000a,0 0 0 14px #e8c98700}}
+.btn,.ghost,.envelope{touch-action:manipulation}
+
+/* ---- Celular ---- */
+@media (max-width:640px){
+  .center{gap:16px}
+  .eyebrow{font-size:.72rem;letter-spacing:.24em}
+  .sub{font-size:1rem;padding:0 6px}
+  .btn{padding:16px 40px;font-size:1.1rem;min-height:52px}
+  .btn.small{padding:12px 26px;min-height:48px}
+  .polaroid{padding:10px 10px 32px}
+  .polaroid figcaption{font-size:1rem;padding-top:10px}
+  .nav{gap:14px}
+  .envelope{height:170px}
+  .carta{padding:26px 20px;font-size:1rem;line-height:1.68}
+  .carta p{margin-bottom:14px}
+  .musica{padding:0 14px 0 12px;font-size:.85rem}
+  /* fundo mais leve e menor no celular */
+  .aviao.a1{width:170px}.aviao.a2{width:100px}.aviao.a3{width:200px}
+  .rl1{width:66px}.rl2{width:76px}.rl3{display:none}
+  .engr.g1{width:80px}.engr.g3{display:none}
+  .nuvem.n2{display:none}
+}
+@media (max-height:560px) and (orientation:landscape){
+  .stage{align-items:flex-start}
+  .center{gap:10px}
+  .polaroid{width:min(40vw,calc((100dvh - 150px) * .8))}
+  .carta{max-height:calc(100dvh - 24px)}
+  h1{font-size:2rem}
+}
