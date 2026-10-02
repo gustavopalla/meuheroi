@@ -17,7 +17,7 @@ h1{font-size:clamp(2.4rem,9vw,4.2rem);font-weight:400;line-height:1.1;color:var(
 .btn.small{padding:10px 24px}
 .ghost{background:transparent;border:1px solid #e8c98777;color:var(--gold);border-radius:999px;width:48px;height:48px;font-size:1.1rem;cursor:pointer}
 .ghost:disabled{opacity:.25;cursor:default}
-.polaroid{background:var(--cream);padding:14px 14px 42px;border-radius:4px;box-shadow:0 20px 50px #000a;transform:rotate(var(--rot));width:min(86vw,400px,calc((100dvh - 190px) * .8));min-width:200px;animation:drop .8s cubic-bezier(.2,.9,.3,1.2) both}
+.polaroid{background:var(--cream);padding:14px 14px 42px;border-radius:4px;box-shadow:0 20px 50px #000a;transform:rotate(var(--rot));width:min(86vw,400px,calc((100dvh - 250px) * .8));min-width:200px;animation:drop .8s cubic-bezier(.2,.9,.3,1.2) both}
 @keyframes drop{from{opacity:0;transform:translateY(-30px) rotate(calc(var(--rot) * 3))}to{opacity:1;transform:rotate(var(--rot))}}
 .polaroid img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#ddd}
 .polaroid figcaption{color:var(--ink);font-style:italic;font-size:1.15rem;padding-top:14px}
@@ -28,7 +28,7 @@ h1{font-size:clamp(2.4rem,9vw,4.2rem);font-weight:400;line-height:1.1;color:var(
 .envelope .body{position:absolute;inset:0;background:#d9bf93;border-radius:6px;box-shadow:0 18px 40px #000a}
 .envelope .flap{position:absolute;left:0;right:0;top:0;height:60%;background:#c8aa78;clip-path:polygon(0 0,100% 0,50% 100%);z-index:2;border-radius:6px 6px 0 0}
 .envelope .seal{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);z-index:3;width:46px;height:46px;border-radius:50%;background:#a52a2a;color:#ffd9d9;display:grid;place-items:center;font-size:1.3rem;box-shadow:0 3px 8px #0006}
-.carta{background:var(--cream);color:var(--ink);padding:36px 30px;border-radius:6px;box-shadow:0 24px 60px #000b;text-align:left;line-height:1.75;font-size:1.08rem;max-height:calc(100dvh - 40px);overflow-y:auto;-webkit-overflow-scrolling:touch;animation:unfold .9s ease both;background-image:repeating-linear-gradient(transparent,transparent 31px,#0000000a 32px)}
+.carta{background:var(--cream);color:var(--ink);padding:36px 30px;border-radius:6px;box-shadow:0 24px 60px #000b;text-align:left;line-height:1.75;font-size:1.08rem;max-height:calc(100dvh - 130px);overflow-y:auto;-webkit-overflow-scrolling:touch;animation:unfold .9s ease both;background-image:repeating-linear-gradient(transparent,transparent 31px,#0000000a 32px)}
 @keyframes unfold{from{opacity:0;transform:scale(.85) translateY(40px)}to{opacity:1;transform:none}}
 .carta p{margin-bottom:16px;opacity:0;animation:fade .9s ease forwards}
 .carta .assin{margin-top:26px;font-style:italic;text-align:right}
@@ -90,11 +90,13 @@ h1{font-size:clamp(2.4rem,9vw,4.2rem);font-weight:400;line-height:1.1;color:var(
 @media (prefers-reduced-motion:reduce){.rl{animation-duration:200s}}
 
 /* botão de música: sempre visível, grande o bastante pro dedo */
-.musica{position:fixed;top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));z-index:20;display:flex;align-items:center;gap:8px;min-height:48px;padding:0 18px 0 14px;background:#1a1210cc;color:var(--gold);border:1.5px solid var(--gold);border-radius:999px;font:inherit;font-size:.95rem;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 4px 18px #000a;touch-action:manipulation}
+.voltar,.musica{position:fixed;top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));z-index:20;display:flex;align-items:center;gap:8px;min-height:48px;padding:0 18px 0 14px;background:#1a1210cc;color:var(--gold);border:1.5px solid var(--gold);border-radius:999px;font:inherit;font-size:.95rem;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 4px 18px #000a;touch-action:manipulation}
+.voltar{right:auto;left:max(12px,env(safe-area-inset-left));gap:4px;padding:0 18px 0 10px}
+.voltar:active,.musica:active{transform:scale(.96)}
 .musica:not(.on){animation:pulso 1.8s ease-out infinite}
 .musica.on{background:var(--gold);color:var(--ink)}
 @keyframes pulso{0%{box-shadow:0 4px 18px #000a,0 0 0 0 #e8c987aa}100%{box-shadow:0 4px 18px #000a,0 0 0 14px #e8c98700}}
-.btn,.ghost,.envelope{touch-action:manipulation}
+.btn,.ghost,.envelope,.voltar{touch-action:manipulation}
 
 /* ---- Celular ---- */
 @media (max-width:640px){
@@ -110,6 +112,7 @@ h1{font-size:clamp(2.4rem,9vw,4.2rem);font-weight:400;line-height:1.1;color:var(
   .carta{padding:26px 20px;font-size:1rem;line-height:1.68}
   .carta p{margin-bottom:14px}
   .musica{padding:0 14px 0 12px;font-size:.85rem}
+  .voltar{padding:0 14px 0 8px;font-size:.85rem}
   /* fundo mais leve e menor no celular */
   .aviao.a1{width:170px}.aviao.a2{width:100px}.aviao.a3{width:200px}
   .rl1{width:66px}.rl2{width:76px}.rl3{display:none}
@@ -117,9 +120,9 @@ h1{font-size:clamp(2.4rem,9vw,4.2rem);font-weight:400;line-height:1.1;color:var(
   .nuvem.n2{display:none}
 }
 @media (max-height:560px) and (orientation:landscape){
-  .stage{align-items:flex-start}
+  .stage{align-items:flex-start;padding-top:68px}
   .center{gap:10px}
   .polaroid{width:min(40vw,calc((100dvh - 150px) * .8))}
-  .carta{max-height:calc(100dvh - 24px)}
+  .carta{max-height:calc(100dvh - 84px)}
   h1{font-size:2rem}
 }

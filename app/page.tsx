@@ -16,11 +16,21 @@ export default function Page() {
   const proxima = () => (i < total - 1 ? setI(i + 1) : setEtapa("carta"));
   const anterior = () => i > 0 && setI(i - 1);
 
+  // Volta um passo: carta aberta -> envelope -> última foto -> fotos anteriores -> início.
+  const voltar = () => {
+    if (etapa === "carta") {
+      if (aberta) setAberta(false);
+      else { setEtapa("fotos"); setI(total - 1); }
+    } else if (etapa === "fotos") {
+      if (i > 0) setI(i - 1);
+      else setEtapa("intro");
+    }
+  };
+
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
-      if (etapa !== "fotos") return;
-      if (e.key === "ArrowRight") proxima();
-      if (e.key === "ArrowLeft") anterior();
+      if (etapa === "fotos" && e.key === "ArrowRight") proxima();
+      if (e.key === "ArrowLeft" || e.key === "Escape") voltar();
     };
     window.addEventListener("keydown", h);
     return () => window.removeEventListener("keydown", h);
@@ -58,6 +68,12 @@ export default function Page() {
       <Estrelas />
       <Fundo />
       <audio ref={audio} src="/musica.mp3" loop preload="auto" />
+      {etapa !== "intro" && (
+        <button className="voltar" onClick={voltar} aria-label="Voltar">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+          <span>Voltar</span>
+        </button>
+      )}
       {config.musica && (
         <button className={"musica" + (musica ? " on" : "")} onClick={tocar} aria-label={musica ? "Desligar música" : "Ligar música"}>
           <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
