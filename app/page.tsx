@@ -36,23 +36,9 @@ export default function Page() {
     return () => window.removeEventListener("keydown", h);
   });
 
-  // Música ligada por padrão, em volume baixo. Se o navegador bloquear o autoplay,
-  // começa no primeiro toque/tecla (exceto no próprio botão de música).
+  // Música desligada por padrão: só toca quando a pessoa toca no botão.
   useEffect(() => {
-    const a = audio.current;
-    if (!a || !config.musica) return;
-    a.volume = config.volume;
-    const tentar = () => a.play().then(() => { setMusica(true); desarmar(); }).catch(() => {});
-    const aoInteragir = (e: Event) => {
-      if ((e.target as HTMLElement | null)?.closest?.(".musica")) return;
-      tentar();
-    };
-    // No celular só "touchend"/"click" contam como gesto válido pro áudio.
-    const eventos = ["pointerdown", "pointerup", "touchend", "click", "keydown"] as const;
-    const desarmar = () => eventos.forEach((ev) => window.removeEventListener(ev, aoInteragir));
-    tentar();
-    eventos.forEach((ev) => window.addEventListener(ev, aoInteragir));
-    return desarmar;
+    if (audio.current) audio.current.volume = config.volume;
   }, []);
 
   const tocar = () => {
@@ -90,7 +76,7 @@ export default function Page() {
           <p className="eyebrow">Para {config.paiNome}</p>
           <h1>{config.titulo}{config.idade ? <><br /><span className="idade">{config.idade} anos</span></> : null}</h1>
           <p className="sub">{config.subtitulo}</p>
-          <button className="btn" onClick={() => { setEtapa("fotos"); if (config.musica && !musica) tocar(); }}>Começar</button>
+          <button className="btn" onClick={() => { setEtapa("fotos"); }}>Começar</button>
         </section>
       )}
 

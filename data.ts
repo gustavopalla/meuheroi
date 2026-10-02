@@ -4,7 +4,7 @@ export const config = {
   seuNome: "Gustavo",
   idade: null as number | null, // ex: 60, ou null para não mostrar
   titulo: "Feliz Aniversário",
-  musica: true, // toca /public/musica.mp3 automaticamente (ligada por padrão)
+  musica: true, // mostra o botão de música (/public/musica.mp3). Começa DESLIGADA
   volume: 0.25, // 0 a 1; mais baixo = mais suave
   subtitulo: "Preparei uma pequena viagem pelas nossas memórias.",
 };
