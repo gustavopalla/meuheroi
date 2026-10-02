@@ -47,7 +47,8 @@ export default function Page() {
       if ((e.target as HTMLElement | null)?.closest?.(".musica")) return;
       tentar();
     };
-    const eventos = ["pointerdown", "keydown", "touchstart"] as const;
+    // No celular só "touchend"/"click" contam como gesto válido pro áudio.
+    const eventos = ["pointerdown", "pointerup", "touchend", "click", "keydown"] as const;
     const desarmar = () => eventos.forEach((ev) => window.removeEventListener(ev, aoInteragir));
     tentar();
     eventos.forEach((ev) => window.addEventListener(ev, aoInteragir));
