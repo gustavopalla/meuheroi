@@ -117,12 +117,19 @@ export default function Page() {
               <p className="sub">Toque no envelope para abrir</p>
             </>
           ) : (
-            <article className="carta">
-              {carta.map((p, k) => <p key={k} style={{ animationDelay: `${0.4 + k * 0.7}s` }}>{p}</p>)}
-              <p className="assin" style={{ animationDelay: `${0.4 + carta.length * 0.7}s` }}>
-                {assinatura}<br /><strong>{config.seuNome}</strong>
-              </p>
-            </article>
+            <div className="cartaBox">
+              <button className="fechar" onClick={() => setAberta(false)} aria-label="Fechar carta">✕</button>
+              <article className="carta">
+                {carta.map((p, k) => <p key={k} style={{ animationDelay: `${0.4 + k * 0.7}s` }}>{p}</p>)}
+                <p className="assin" style={{ animationDelay: `${0.4 + carta.length * 0.7}s` }}>
+                  {assinatura}<br /><strong>{config.seuNome}</strong>
+                </p>
+                <div className="fim" style={{ animationDelay: `${0.8 + carta.length * 0.7}s` }}>
+                  <button className="btn small" onClick={() => setAberta(false)}>Fechar carta</button>
+                  <button className="btn small outline" onClick={() => { setAberta(false); setI(0); setEtapa("fotos"); }}>Rever as fotos</button>
+                </div>
+              </article>
+            </div>
           )}
         </section>
       )}
